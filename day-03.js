@@ -6,29 +6,36 @@ const newLineRegex = /\r?\n/
 const rows = data.split(newLineRegex)
 
 
-let rightPos = 0
-let rowNumber = 1
-let trees = 0
+const slopes = [1, 3, 7]
 
-for (const row of rows) {
-    let col = row.split('')
+const result = slopes.map(e => {
+    const rightSteps = e
+    let rightPos = 0
+    let rowNumber = 1
+    let trees = 0
 
-    if (rowNumber === 1) {
+    for (const row of rows) {
+        let col = row.split('')
+
+        if (rowNumber === 1) {
+            rowNumber++
+            continue
+        }
+
+        rightPos += rightSteps
+
+        while (typeof col[rightPos] === 'undefined') {
+            col = col.concat(col)
+        }
+
+        trees += col[rightPos] === '#' ? 1 : 0
         rowNumber++
-        continue
     }
 
-    rightPos += 3
+    return trees
+})
 
-    while (typeof col[rightPos] === 'undefined') {
-        col = col.concat(col)
-    }
-
-    trees += col[rightPos] === '#' ? 1 : 0
-    rowNumber++
-}
-
-console.log(trees)
+console.log(result)
 
 
 
