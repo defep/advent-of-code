@@ -203,9 +203,11 @@ const input = [
 
 const entries = input.filter((val, i, self) => {
     for (let j = 0; j < self.length; j++) {
-        if (val + self[j] === 2020) return true
+        for (let k = 0; k < self.length; k++) {
+            if (val + self[j] + self[k] === 2020) return true
+        }
     }
 })
 
-let result = entries[0] * entries[1]
+let result = entries[0] * entries[1] * entries[2];
 console.log(result)
