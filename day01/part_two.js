@@ -1,3 +1,5 @@
+'use strict'
+
 const input = [
     1765,
     1742,
@@ -201,13 +203,27 @@ const input = [
     1968
 ]
 
-const entries = input.filter((val, i, self) => {
-    for (let j = 0; j < self.length; j++) {
-        for (let k = 0; k < self.length; k++) {
-            if (val + self[j] + self[k] === 2020) return true
-        }
+const recursiveSumAll = times => {
+    times--
+
+    for (let i = 0; i < input; i++) {
+
+    }
+
+    if (times > 0) recursiveSumAll(times)
+}
+
+recursiveSumAll(3)
+
+
+const entries = input.filter((val, i, s) => {
+    for (const v of s) {
+        if (val + v === 2020) return true
     }
 })
 
-let result = entries[0] * entries[1] * entries[2];
-console.log(result)
+
+console.log(entries)
+
+// let result = entries[0] * entries[1] * entries[2];
+// console.log(result)
