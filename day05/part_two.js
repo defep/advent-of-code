@@ -56,4 +56,22 @@ seats.forEach(seat => {
     seatIds.push(seatRowRange.reduce(n => n) * 8 + seatColRange.reduce(n => n))
 })
 
-console.log(seatIds.reduce((prev, cur) => (prev > cur) ? prev : cur))
+
+
+const getMySeat = seats => {
+    let seatId
+
+    seatIds = seatIds.sort((firstEl, lastEl) => firstEl - lastEl)
+
+    seatIds.forEach((el, i, arr) => {
+        if (el + 1 !== arr[i + 1] && typeof arr[i + 1] !== 'undefined') {
+            seatId = el + 1
+        }
+    })
+    return seatId
+}
+
+console.log(getMySeat(seatIds))
+
+
+
