@@ -56,8 +56,6 @@ seats.forEach(seat => {
     seatIds.push(seatRowRange.reduce(n => n) * 8 + seatColRange.reduce(n => n))
 })
 
-
-
 const getMySeat = seats => {
     let seatId
 
