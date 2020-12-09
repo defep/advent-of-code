@@ -20,12 +20,16 @@ fmtPassports.forEach(p => {
         fields.push(el.split(':'))
     })
 
-    if (fields.length === 8) {
-        // console.log(fields[0].indexOf('cid'))
+    if (fields.length === 8 || fields.length === 7) {
         const validFields = ['ecl', 'pid', 'eyr', 'hcl', 'iyr', 'byr', 'hgt', 'cid']
 
         let isValid = true
         fields.forEach(e => {
+            if (e[0] === 'cid' && fields.length === 7) {
+                isValid = false
+                return
+            }
+
             if (e[0].includes(validFields) === -1) {
                 isValid = false
             }
@@ -33,20 +37,6 @@ fmtPassports.forEach(p => {
         })
 
         isValid ? validPassportCount++ : false
-    }
-
-    if (fields.length === 7) {
-        let isValid = true
-        fields.forEach(e => {
-
-            if (e[0] === 'cid') {
-                isValid = false
-            }
-
-        })
-
-        isValid ? validPassportCount++ : false
-
     }
 })
 
